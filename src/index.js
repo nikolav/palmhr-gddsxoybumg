@@ -1,17 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import "animate.css";
 
+import "./index.css";
 import "./theme/bootstrap.css";
+
+import Root from "./Root";
+
 // import "bootstrap";
 
-
-
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  <BrowserRouter>
+    <Root />
+  </BrowserRouter>,
+  document.getElementById("root")
 );
-
