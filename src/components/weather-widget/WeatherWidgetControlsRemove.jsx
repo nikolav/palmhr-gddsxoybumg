@@ -1,8 +1,7 @@
-const WeatherWidgetControlsRemove = () => {
-  const handleClick = (evt) => {};
+const WeatherWidgetControlsRemove = ({ removePlace }) => {
   return (
-    <a href="#" role="button">
-      <i onClick={handleClick} className="fa-regular fa-trash-can"></i>
+    <a href="!#" role="button">
+      <i onClick={removePlace} className="fa-regular fa-trash-can"></i>
     </a>
   );
 };
