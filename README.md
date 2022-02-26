@@ -1,3 +1,7 @@
+
+![Test if App renders](./test000.jpg "passed")
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -73,18 +77,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 name@G
   palmhr-gddsxoybumg
-
-apikey.g
-  AIzaSyAg15L3_mc77wX8TemqE1tPcoieQB3kJ9c
-openweathermap.api
-  appid=890c761c3de1ec21feefe4b2af7971c9
-  api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
-  https://api.openweathermap.org/data/2.5/weather?lat=55.65062387107011&lon=37.67228963133272&appid=890c761c3de1ec21feefe4b2af7971c9
-
- 
-https://developers.google.com/maps/documentation/geocoding/start#sample-request
-  https://maps.googleapis.com/maps/api/geocode/json?address=Moscow&key=AIzaSyAg15L3_mc77wX8TemqE1tPcoieQB3kJ9c
-
-
-locations lat,lon
-moscow 55.65062387107011, 37.67228963133272
