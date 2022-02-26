@@ -52,11 +52,11 @@ const WeatherWidget = ({ address }) => {
     };
     fetch_();
   }, []);
-  
+
   return (
     <Card
-      style={{ width: 211 }}
-      className="p-2 fs-6 rounded-big shadow-sm text-center"
+      style={{ width: 222 }}
+      className="p-2 fs-6 rounded-big shadow-sm text-center flex-shrink-0"
     >
       <Card.Header className="border-0 bg-transparent">
         <WeatherWidgetControls />
