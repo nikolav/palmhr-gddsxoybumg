@@ -1,5 +1,6 @@
 import "./App.css";
 import { Container, Row, Col, Button, ButtonGroup } from "react-bootstrap";
+import WeatherWidget from "./components/weather-widget/WeatherWidget";
 
 const App = ({ logout }) => {
   return (
@@ -12,6 +13,7 @@ const App = ({ logout }) => {
           >
             <h1 className="display-1">weatherapp</h1>
             <p className="text-muted">under construction</p>
+            <WeatherWidget />
           </div>
           <div className="position-absolute top-0 end-0 p-0 p-sm-2">
             <ButtonGroup>

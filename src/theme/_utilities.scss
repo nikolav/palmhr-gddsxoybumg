@@ -1,0 +1,15 @@
+// .rounded-big 
+$utilities: map-merge(
+  $utilities,
+  (
+    "rounded": map-merge(
+      map-get($utilities, "rounded"),
+      (
+        values: map-merge(
+          map-get(map-get($utilities, "rounded"), "values"),
+          (big: 1.2em),
+        ),
+      ),
+    ),
+  )
+);

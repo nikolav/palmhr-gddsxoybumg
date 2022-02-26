@@ -7783,6 +7783,10 @@ textarea.form-control-lg {
   border-radius: 50rem !important;
 }
 
+.rounded-big {
+  border-radius: 1.2em !important;
+}
+
 .rounded-top {
   border-top-left-radius: 0.25rem !important;
   border-top-right-radius: 0.25rem !important;
