@@ -13,7 +13,10 @@ const App = ({ logout }) => {
           >
             <h1 className="display-1">weatherapp</h1>
             <p className="text-muted">under construction</p>
-            <WeatherWidget />
+            <WeatherWidget address="Belgrade" />
+            <WeatherWidget address="Wien" />
+            <WeatherWidget address="Riyadh" />
+            <WeatherWidget address="Dubai" />
           </div>
           <div className="position-absolute top-0 end-0 p-0 p-sm-2">
             <ButtonGroup>
