@@ -3,7 +3,7 @@ import { Card } from "react-bootstrap";
 import WeatherWidgetControls from "./WeatherWidgetControls";
 import WeatherWidgetData from "./WeatherWidgetData";
 
-const WeatherWidget = ({ address }) => {
+const WeatherWidget = ({ address, removePlace }) => {
   const [temp, setTemp] = useState("");
   const [icon, setIcon] = useState("");
   const [description, setDescription] = useState("");
@@ -59,7 +59,7 @@ const WeatherWidget = ({ address }) => {
       className="p-2 fs-6 rounded-big shadow-sm text-center flex-shrink-0"
     >
       <Card.Header className="border-0 bg-transparent">
-        <WeatherWidgetControls />
+        <WeatherWidgetControls removePlace={removePlace} />
       </Card.Header>
       <Card.Body>
         <Card.Title>{address}</Card.Title>
