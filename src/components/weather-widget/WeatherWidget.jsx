@@ -64,7 +64,7 @@ const WeatherWidget = ({ address, removePlace }) => {
         <WeatherWidgetControls removePlace={removePlace} />
       </Card.Header>
       <Card.Body>
-        <Card.Title>{address_(address)}</Card.Title>
+        <Card.Title>{address}</Card.Title>
         <Card.Text>
           <strong className="fs-3">
             {temp} {"\u00b0"}C
@@ -82,8 +82,8 @@ const WeatherWidget = ({ address, removePlace }) => {
           <em className="opacity-75">{ucFirstText(description)}</em>
         </Card.Text>
         <div style={{ fontSize: "90%" }}>
-          <WeatherWidgetData name="Min" value={`${tempMin}\u00b0C`} />
-          <WeatherWidgetData name="Max" value={`${tempMax}\u00b0C`} />
+          <WeatherWidgetData name="Min" value={`${tempMin} \u00b0C`} />
+          <WeatherWidgetData name="Max" value={`${tempMax} \u00b0C`} />
           <WeatherWidgetData name="Sunrise" value={sunrise} />
           <WeatherWidgetData name="Sunset" value={sunset} />
           <WeatherWidgetData name="Wind" value={`${wind}ms`} />
@@ -98,10 +98,11 @@ export default WeatherWidget;
 //
 function convertToTZ(unixT, tz) {
   let dt = new Date((unixT + tz) * 1000);
-  let h = dt.getHours();
-  let m = "0" + dt.getMinutes();
-  let t = h + ":" + m.substr(-2);
-  return t;
+  return ampm(dt);
+  // let h = dt.getHours();
+  // let m = "0" + dt.getMinutes();
+  // let t = h + ":" + m.substr(-2);
+  // return t;
 }
 function ucFirstText(text) {
   return String(text)
@@ -114,9 +115,15 @@ function ucFirstText(text) {
 function ucfirst(word) {
   return word[0]?.toUpperCase() + word.substr(1).toLowerCase();
 }
-function address_(addr) {
-  const m = String(addr).match(/^([a-z]+).*/i);
-  return ucfirst(m[1]);
+function ampm(date) {
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  const ampm = hours >= 12 ? "pm" : "am";
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+  minutes = minutes < 10 ? "0" + minutes : minutes;
+  const strTime = hours + ":" + minutes + " " + ampm;
+  return strTime;
 }
 
 // const GEOSEARCHURI =

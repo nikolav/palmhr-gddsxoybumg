@@ -16,7 +16,7 @@ const App = ({ logout }) => {
     "Dubai",
   ]);
   const addPlace = (place) => {
-    if (-1 === widgets.indexOf(place))
+    if ((place = place.trim()) && -1 === widgets.indexOf(place))
       setWidgets((widgets_) => [place, ...widgets_]);
   };
   const removePlace = (place) =>
@@ -34,7 +34,8 @@ const App = ({ logout }) => {
         <Row>
           <Col className="d-flex gap-2 justify-content-evenly flex-wrap">
             {widgets.map((place) => (
-              <motion.div key={place}
+              <motion.div
+                key={place}
                 whileHover={{
                   scale: 1.0123,
                 }}
