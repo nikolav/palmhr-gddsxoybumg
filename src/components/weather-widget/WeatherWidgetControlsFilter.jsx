@@ -1,9 +1,9 @@
 const WeatherWidgetControlsFilter = () => {
   const handleClick = (evt) => {};
   return (
-    <a className="widget-actions" href="#" role="button">
+    <div className="widget-actions">
       <i onClick={handleClick} className="fa-solid fa-filter"></i>
-    </a>
+    </div>
   );
 };
 

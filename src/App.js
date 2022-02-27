@@ -1,7 +1,7 @@
 import "./App.css";
 import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 import WeatherWidget from "./components/weather-widget/WeatherWidget";
 import Heading from "./components/Heading";

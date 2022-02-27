@@ -1,9 +1,8 @@
 const WeatherWidgetControlsDragHandles = () => {
-  const handleClick = (evt) => {};
   return (
-    <a href="#" role="button" className="widget-actions">
-      <i onClick={handleClick} className="fa-solid fa-grip-lines"></i>
-    </a>
+    <span className="widget-actions">
+      <i className="fa-solid fa-grip-lines"></i>
+    </span>
   );
 };
 

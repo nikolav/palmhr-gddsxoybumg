@@ -3,7 +3,7 @@ import { Card } from "react-bootstrap";
 import WeatherWidgetControls from "./WeatherWidgetControls";
 import WeatherWidgetData from "./WeatherWidgetData";
 
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 
 const WeatherWidget = ({ address, removePlace }) => {
   const [temp, setTemp] = useState("");
@@ -53,7 +53,7 @@ const WeatherWidget = ({ address, removePlace }) => {
       // console.log(wData);
     };
     fetch_();
-  }, []);
+  }, [address]);
 
   return (
     <Card
