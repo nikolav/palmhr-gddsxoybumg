@@ -1,6 +1,6 @@
 const WeatherWidgetControlsRemove = ({ removePlace }) => {
   return (
-    <div className="widget-actions">
+    <div className="widget-actions cursor-pointer">
       <i
         onClick={(evt) => {
           evt.preventDefault();

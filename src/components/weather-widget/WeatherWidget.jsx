@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
-import WeatherWidgetControls from "./WeatherWidgetControls";
+import WeatherWidgetControlsDragHandles from "./WeatherWidgetControlsDragHandles";
+import WeatherWidgetControlsFilter from "./WeatherWidgetControlsFilter";
+import WeatherWidgetControlsRemove from "./WeatherWidgetControlsRemove";
 import WeatherWidgetData from "./WeatherWidgetData";
 
 // import { motion } from "framer-motion";
@@ -14,6 +16,12 @@ const WeatherWidget = ({ address, removePlace }) => {
   const [sunset, setSunset] = useState("");
   const [sunrise, setSunrise] = useState("");
   const [wind, setWind] = useState("");
+
+  const [showFilter, setShowFilter] = useState({
+    temp: true,
+    times: true,
+    wind: true,
+  });
 
   useEffect(() => {
     const fetch_ = async () => {
@@ -61,7 +69,16 @@ const WeatherWidget = ({ address, removePlace }) => {
       className="p-2 fs-6 rounded-big shadow-sm text-center flex-shrink-0"
     >
       <Card.Header className="border-0 bg-transparent">
-        <WeatherWidgetControls removePlace={removePlace} />
+        <div className="d-flex align-items-center justify-content-between">
+          <WeatherWidgetControlsDragHandles />
+          <div className="d-flex gap-3">
+            <WeatherWidgetControlsFilter
+              filters={showFilter}
+              setShowFilter={setShowFilter}
+            />
+            <WeatherWidgetControlsRemove removePlace={removePlace} />
+          </div>
+        </div>
       </Card.Header>
       <Card.Body>
         <Card.Title>{address}</Card.Title>
@@ -82,11 +99,21 @@ const WeatherWidget = ({ address, removePlace }) => {
           <em className="opacity-75">{ucFirstText(description)}</em>
         </Card.Text>
         <div style={{ fontSize: "90%" }}>
-          <WeatherWidgetData name="Min" value={`${tempMin} \u00b0C`} />
-          <WeatherWidgetData name="Max" value={`${tempMax} \u00b0C`} />
-          <WeatherWidgetData name="Sunrise" value={sunrise} />
-          <WeatherWidgetData name="Sunset" value={sunset} />
-          <WeatherWidgetData name="Wind" value={`${wind}ms`} />
+          {showFilter.temp && (
+            <>
+              <WeatherWidgetData name="Min" value={`${tempMin} \u00b0C`} />
+              <WeatherWidgetData name="Max" value={`${tempMax} \u00b0C`} />
+            </>
+          )}
+          {showFilter.times && (
+            <>
+              <WeatherWidgetData name="Sunrise" value={sunrise} />
+              <WeatherWidgetData name="Sunset" value={sunset} />
+            </>
+          )}
+          {showFilter.wind && (
+            <WeatherWidgetData name="Wind" value={`${wind}ms`} />
+          )}
         </div>
       </Card.Body>
     </Card>
