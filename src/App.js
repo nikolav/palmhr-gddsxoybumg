@@ -1,6 +1,7 @@
 import "./App.css";
 import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { motion, AnimatePresence } from "framer-motion";
 
 import WeatherWidget from "./components/weather-widget/WeatherWidget";
 import Heading from "./components/Heading";
@@ -20,7 +21,7 @@ const App = ({ logout }) => {
   };
   const removePlace = (place) =>
     setWidgets((widgets_) => widgets_.filter((city) => city !== place));
-  
+
   return (
     <>
       <Container fluid>
@@ -31,13 +32,18 @@ const App = ({ logout }) => {
         </Row>
 
         <Row>
-          <Col className="d-flex gap-1 justify-content-evenly flex-wrap">
+          <Col className="d-flex gap-2 justify-content-evenly flex-wrap">
             {widgets.map((place) => (
-              <WeatherWidget
-                removePlace={() => removePlace(place)}
-                address={place}
-                key={place}
-              />
+              <motion.div key={place}
+                whileHover={{
+                  scale: 1.0123,
+                }}
+              >
+                <WeatherWidget
+                  removePlace={() => removePlace(place)}
+                  address={place}
+                />
+              </motion.div>
             ))}
           </Col>
         </Row>

@@ -10,6 +10,13 @@ body {
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: rgb(28, 70, 87);
+  background: linear-gradient(
+    173deg,
+    rgba(28, 70, 87, 1) 0%,
+    rgba(94, 156, 158, 1) 100%
+  );
+  min-height: 100vh;
 }
 
 code {

@@ -11,7 +11,7 @@ const Root = () => {
   return (
     <Routes>
       <Route
-        path="*"
+        path="/"
         element={
           authData ? (
             <App logout={() => setAuthData(() => "")} />

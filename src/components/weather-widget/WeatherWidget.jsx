@@ -3,6 +3,8 @@ import { Card } from "react-bootstrap";
 import WeatherWidgetControls from "./WeatherWidgetControls";
 import WeatherWidgetData from "./WeatherWidgetData";
 
+import { motion } from "framer-motion";
+
 const WeatherWidget = ({ address, removePlace }) => {
   const [temp, setTemp] = useState("");
   const [icon, setIcon] = useState("");
@@ -62,11 +64,13 @@ const WeatherWidget = ({ address, removePlace }) => {
         <WeatherWidgetControls removePlace={removePlace} />
       </Card.Header>
       <Card.Body>
-        <Card.Title>{address}</Card.Title>
+        <Card.Title>{address_(address)}</Card.Title>
         <Card.Text>
-          {temp} {"\u00b0"}C
+          <strong className="fs-3">
+            {temp} {"\u00b0"}C
+          </strong>
         </Card.Text>
-        <Card.Text className="fs-1">
+        <Card.Text>
           {icon && (
             <img
               src={`http://openweathermap.org/img/w/${icon}.png`}
@@ -74,10 +78,12 @@ const WeatherWidget = ({ address, removePlace }) => {
             />
           )}
         </Card.Text>
-        <Card.Text>{description}</Card.Text>
+        <Card.Text>
+          <em className="opacity-75">{ucFirstText(description)}</em>
+        </Card.Text>
         <div style={{ fontSize: "90%" }}>
-          <WeatherWidgetData name="Min" value={`\u00b0${tempMin}`} />
-          <WeatherWidgetData name="Max" value={`\u00b0${tempMax}`} />
+          <WeatherWidgetData name="Min" value={`${tempMin}\u00b0C`} />
+          <WeatherWidgetData name="Max" value={`${tempMax}\u00b0C`} />
           <WeatherWidgetData name="Sunrise" value={sunrise} />
           <WeatherWidgetData name="Sunset" value={sunset} />
           <WeatherWidgetData name="Wind" value={`${wind}ms`} />
@@ -96,6 +102,21 @@ function convertToTZ(unixT, tz) {
   let m = "0" + dt.getMinutes();
   let t = h + ":" + m.substr(-2);
   return t;
+}
+function ucFirstText(text) {
+  return String(text)
+    .split(/\s+/g)
+    .reduce((value, word) => {
+      value += " " + ucfirst(word);
+      return value;
+    }, "");
+}
+function ucfirst(word) {
+  return word[0]?.toUpperCase() + word.substr(1).toLowerCase();
+}
+function address_(addr) {
+  const m = String(addr).match(/^([a-z]+).*/i);
+  return ucfirst(m[1]);
 }
 
 // const GEOSEARCHURI =

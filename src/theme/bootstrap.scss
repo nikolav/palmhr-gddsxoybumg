@@ -1,8 +1,25 @@
 
 
-// set app defaults
-$primary: #1c4658;
 
+.widget-actions {
+  color: white !important;
+  opacity: .55;
+  &:hover {
+    opacity: .78;
+  }
+}
+
+// setup defaults
+$primary: #1c4657;
+$light: #e8edef;
+
+// det card defaults
+$card-border-width: 0;
+$card-box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 17%) !important;
+$card-bg: #ffffff2b !important;
+$card-color: #fff;
+// $bg-gradient-card-top    : #507581;
+// $bg-gradient-card-botton : #689c9f;
 
 /*!
  * Bootstrap v5.1.3 (https://getbootstrap.com/)
@@ -21,10 +38,8 @@ $primary: #1c4658;
 @import "../../node_modules/bootstrap/scss/mixins";
 @import "../../node_modules/bootstrap/scss/utilities";
 
-
 // setup utilities
 @import "./utilities";
-
 
 // Layout & components
 @import "../../node_modules/bootstrap/scss/root";
@@ -67,4 +82,3 @@ $primary: #1c4658;
 // scss-docs-end import-stack
 
 @import "./bootswatch";
-
