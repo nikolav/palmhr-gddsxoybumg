@@ -7,6 +7,7 @@ const Menu = ({ logout }) => {
         <Button
           href="https://github.com/nikolav/palmhr-gddsxoybumg.git"
           target="_blank"
+          variant="secondary"
         >
           <i className="fa-brands fa-github"></i>
         </Button>
