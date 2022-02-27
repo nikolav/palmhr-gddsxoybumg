@@ -4,9 +4,8 @@ import { Container, Row, Col } from "react-bootstrap";
 import { motion } from "framer-motion";
 
 import WeatherWidget from "./components/weather-widget/WeatherWidget";
-import Heading from "./components/Heading";
-import Menu from "./components/Menu";
 import ButtonFloatingAddCity from "./components/ButtonFloatingAddCity";
+import Navigation from "./components/Navigation";
 
 const App = ({ logout }) => {
   const [widgets, setWidgets] = useState([
@@ -24,13 +23,8 @@ const App = ({ logout }) => {
 
   return (
     <>
+      <Navigation logout={logout} />
       <Container fluid>
-        <Row>
-          <Col>
-            <Heading />
-          </Col>
-        </Row>
-
         <Row>
           <Col className="d-flex gap-2 justify-content-evenly flex-wrap">
             {widgets.map((place) => (
@@ -49,8 +43,6 @@ const App = ({ logout }) => {
           </Col>
         </Row>
       </Container>
-
-      <Menu logout={logout} />
       <ButtonFloatingAddCity addPlace={addPlace} />
     </>
   );
