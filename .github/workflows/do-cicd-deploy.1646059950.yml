@@ -22,6 +22,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: |
+        echo -- >> log
+        echo -- >> log
+        whoami >> log
+        su - nodejs
         whoami >> log
         # cd api
         # npm ci
