@@ -8,12 +8,10 @@ import ButtonFloatingAddCity from "./components/ButtonFloatingAddCity";
 import Navigation from "./components/Navigation";
 
 const App = ({ logout }) => {
-  const [widgets, setWidgets] = useState([
-    "Belgrade",
-    "Wien",
-    "Riyadh",
-    "Dubai",
-  ]);
+  const [widgets, setWidgets] = useState(
+    ["Belgrade", "Wien", "Riyadh", "Dubai"]
+      .sort(() => Math.random() - .5));
+    
   const addPlace = (place) => {
     if ((place = place.trim()) && -1 === widgets.indexOf(place))
       setWidgets((widgets_) => [place, ...widgets_]);
