@@ -22,7 +22,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: |
-        echo -- >> log
+        echo -n -- >> log
         date >> log
         whoami >> log
         cd api
@@ -30,4 +30,4 @@ jobs:
         cd ..
         npm ci
         npm run build
-        # NODE_ENV=production pm2 restart dora-palmhr --update-env
+        NODE_ENV=production pm2 restart dora.palmhr@nikolav --update-env
