@@ -5,7 +5,7 @@ var logger = require('morgan');
 const cors = require("cors");
 
 var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
+var adminRouter = require('./routes/users');
 
 var app = express();
 
@@ -17,7 +17,8 @@ app.use(express.static(path.resolve(__dirname, '../build')));
 // app.use(express.static(path.resolve(__dirname, 'ghrunner', '_work', 'palmhr-gddsxoybumg', 'palmhr-gddsxoybumg', 'build')));
 app.use(cors());
 
-app.use('/', indexRouter);
+app.use('/api', indexRouter);
+app.use('/admin', adminRouter);
 // app.use('/users', usersRouter);
 
 module.exports = app;

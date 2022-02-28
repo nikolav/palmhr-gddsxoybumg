@@ -1,10 +1,10 @@
 var express = require("express");
 var router = express.Router();
 
-router.get("/api", function (req, res, next) {
+router.get("/", function (req, res, next) {
   return res.json({
     message: "welcome",
-    version: "0.0.0",
+    version: "0.0.1",
     appname: "weatherapp@palmhr",
   });
 });
