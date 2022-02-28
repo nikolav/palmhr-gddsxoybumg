@@ -4,7 +4,7 @@ var router = express.Router();
 router.get("/", function (req, res, next) {
   return res.json({
     message: "welcome",
-    version: "0.1.1",
+    version: "0.0.2",
     appname: "weatherapp@palmhr",
   });
 });

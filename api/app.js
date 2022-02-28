@@ -5,8 +5,6 @@ var logger       = require('morgan');
 const cors       = require("cors");
 
 var indexRouter = require('./routes/index');
-var adminRouter = require('./routes/users');
-var dateRouter  = require('./routes/date');
 
 var app = express();
 
@@ -19,9 +17,6 @@ app.use(express.static(path.resolve(__dirname, '../build')));
 app.use(cors());
 
 app.use('/api',   indexRouter);
-app.use('/admin', adminRouter);
-app.use('/date',  dateRouter);
-// app.use('/users', usersRouter);
 
 module.exports = app;
 
