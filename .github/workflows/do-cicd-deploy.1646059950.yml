@@ -22,9 +22,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: |
+        whoami
         cd api
         npm ci
         cd ..
         npm ci
         npm run build
-        NODE_ENV=production pm2 restart 0 --update-env
+        # NODE_ENV=production pm2 restart dora-palmhr --update-env
