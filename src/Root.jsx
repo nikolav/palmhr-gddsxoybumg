@@ -1,18 +1,26 @@
-import React from "react";
-import App from "./App";
-import Login from "./components/Login";
-import useLocalStorage from "./hooks/use-local-storage";
 
+import React             from "react";
 import { Routes, Route } from "react-router-dom";
 
+import App   from "./App";
+import Login from "./components/Login";
+
+import useLocalStorage from "./hooks/use-local-storage";
+
+
 const Root = () => {
+
   const [authData, setAuthData] = useLocalStorage();
 
   return (
     <Routes>
       <Route
-        path="/"
+        // intercept all routes
+        path="*"
         element={
+          // watch `authData` for updates
+          //   render components accordingly
+          //   pass login/logout functoins to childreb
           authData ? (
             <App logout={() => setAuthData(() => "")} />
           ) : (

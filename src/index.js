@@ -1,14 +1,17 @@
-import React from "react";
-import ReactDOM from "react-dom";
+
+import React             from "react";
+import ReactDOM          from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import "animate.css";
 
-import "./index.css";
-import "./theme/bootstrap.css";
+import Root              from "./Root";
 
-import Root from "./Root";
 
+import "./index.css";           // +normalize
+import "./theme/bootstrap.css"; // +bs5 +bootswatch +some-overrides
+
+import "animate.css"; // +simple ccs amimations
 // import "bootstrap";
+
 
 ReactDOM.render(
   <BrowserRouter>

@@ -1,17 +1,25 @@
-import "./App.css";
-import { useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import { motion } from "framer-motion";
 
-import WeatherWidget from "./components/weather-widget/WeatherWidget";
+import "./App.css";
+import { useState }            from "react";
+import { Container, Row, Col } from "react-bootstrap"; // implements bs framework
+import { motion }              from "framer-motion";   // simple in/out animations
+
+import WeatherWidget         from "./components/weather-widget/WeatherWidget";
 import ButtonFloatingAddCity from "./components/ButtonFloatingAddCity";
-import Navigation from "./components/Navigation";
+import Navigation            from "./components/Navigation";
+
 
 const App = ({ logout }) => {
+
+  // setup root state
   const [widgets, setWidgets] = useState(
-    ["Belgrade", "Wien", "Riyadh", "Dubai"]
+
+    // cache few cities
+    ["Belgrade", "Wien", "Riyadh", "Dubai", 
+    "Mladenovac, RS", "Windsor, ON"]
       .sort(() => Math.random() - .5));
-    
+  
+  // management points
   const addPlace = (place) => {
     if ((place = place.trim()) && -1 === widgets.indexOf(place))
       setWidgets((widgets_) => [place, ...widgets_]);
@@ -19,6 +27,7 @@ const App = ({ logout }) => {
   const removePlace = (place) =>
     setWidgets((widgets_) => widgets_.filter((city) => city !== place));
 
+  
   return (
     <>
       <Navigation logout={logout} />
