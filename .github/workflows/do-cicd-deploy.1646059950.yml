@@ -28,12 +28,12 @@ jobs:
         cache: 'npm'
     
     - run: 
-      cd api
-      npm ci
-      cd ..
-      npm ci
-      # - run: npm test
-      npm run build
-      # pm2 restart -ra-palmhr2
-      # pm2 save --force
-      # sudo service nginx restart
+        cd api
+        npm ci
+        cd ..
+        npm ci
+        # - run: npm test
+        npm run build
+        # pm2 restart -ra-palmhr2
+        # pm2 save --force
+        # sudo service nginx restart
