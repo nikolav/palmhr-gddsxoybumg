@@ -1,0 +1,49 @@
+
+
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+<<<<<<<< HEAD:.github/workflows/do-cicd-deploy.1646059950.yml
+name: do-cicd-deploy.1646059950
+========
+name: do-cicd-deploy.1646058318
+>>>>>>>> 22de44a5965c6be326a551a9c201b378e18eafd2:.github/workflows/do-cicd-deploy.1646058318.yml
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  
+  build:
+    runs-on: self-hosted
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    
+    - run: 
+      cd api
+<<<<<<<< HEAD:.github/workflows/do-cicd-deploy.1646059950.yml
+      npm ci
+      cd ..
+      npm ci
+========
+      npm i
+      cd ..
+      npm i
+>>>>>>>> 22de44a5965c6be326a551a9c201b378e18eafd2:.github/workflows/do-cicd-deploy.1646058318.yml
+      # - run: npm test
+      npm run build
+      # pm2 restart -ra-palmhr2
+      # pm2 save --force
+      # sudo service nginx restart
