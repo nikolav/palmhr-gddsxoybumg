@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { Button, Modal, Form, ButtonGroup } from "react-bootstrap";
 const ButtonFloatingAddCity = ({ addPlace }) => {
-  // const refControl = useRef();
+  const refControl = useRef();
   const refControlSelect = useRef();
   const [show, setShow] = useState(false);
 
@@ -9,10 +9,7 @@ const ButtonFloatingAddCity = ({ addPlace }) => {
   const handleShow = () => setShow(true);
   const submit_ = (evt) => {
     evt.preventDefault();
-    addPlace(
-      // refControl.current.value || 
-      refControlSelect.current.value
-    );
+    addPlace(refControl.current.value || refControlSelect.current.value);
     handleClose();
   };
 
@@ -38,7 +35,7 @@ const ButtonFloatingAddCity = ({ addPlace }) => {
               <Form.Label>Name of the City</Form.Label>
               <Form.Select
                 ref={refControlSelect}
-                // onChange={() => (refControl.current.value = "")}
+                onChange={() => (refControl.current.value = "")}
               >
                 <option disabled>Select City</option>
                 <option value="Paris">Paris</option>
@@ -46,14 +43,14 @@ const ButtonFloatingAddCity = ({ addPlace }) => {
                 <option value="Kyiev">Kyiev</option>
               </Form.Select>
             </Form.Group>
-            {/* <Form.Group className="mb-3">
+            <Form.Group className="mb-3">
               <Form.Label>Address or City</Form.Label>
               <Form.Control
                 ref={refControl}
                 type="text"
                 placeholder="Moscow, RU"
               />
-            </Form.Group> */}
+            </Form.Group>
           </Modal.Body>
           <Modal.Footer className="bg-light border-0 d-flex justify-content-end">
             <ButtonGroup>

@@ -5,8 +5,6 @@ import WeatherWidgetControlsFilter from "./WeatherWidgetControlsFilter";
 import WeatherWidgetControlsRemove from "./WeatherWidgetControlsRemove";
 import WeatherWidgetData from "./WeatherWidgetData";
 
-// import { motion } from "framer-motion";
-
 const WeatherWidget = ({ address, removePlace }) => {
   const [temp, setTemp] = useState("");
   const [icon, setIcon] = useState("");
@@ -25,7 +23,8 @@ const WeatherWidget = ({ address, removePlace }) => {
 
   useEffect(() => {
     const fetch_ = async () => {
-      // fetch lat-lon from ggle
+
+      // geocode lat-lon from ggle
       const { results } = await (
         await fetch(
           `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyAg15L3_mc77wX8TemqE1tPcoieQB3kJ9c`
@@ -57,9 +56,11 @@ const WeatherWidget = ({ address, removePlace }) => {
       setSunrise(convertToTZ(sunrise, timezone));
       setSunset(convertToTZ(sunset, timezone));
       setWind(Math.round(wind));
-      //
+
       // console.log(wData);
     };
+
+    //
     fetch_();
   }, [address]);
 
@@ -123,14 +124,15 @@ const WeatherWidget = ({ address, removePlace }) => {
 export default WeatherWidget;
 
 //
+// helpers
+//
+// tz offsets from gm
 function convertToTZ(unixT, tz) {
   let dt = new Date((unixT + tz) * 1000);
   return ampm(dt);
-  // let h = dt.getHours();
-  // let m = "0" + dt.getMinutes();
-  // let t = h + ":" + m.substr(-2);
-  // return t;
 }
+
+// api gives all lowercase...
 function ucFirstText(text) {
   return String(text)
     .split(/\s+/g)
@@ -139,9 +141,13 @@ function ucFirstText(text) {
       return value;
     }, "");
 }
+
+//
 function ucfirst(word) {
   return word[0]?.toUpperCase() + word.substr(1).toLowerCase();
 }
+
+// Date{} -> h:m:a
 function ampm(date) {
   let hours = date.getHours();
   let minutes = date.getMinutes();
@@ -152,10 +158,3 @@ function ampm(date) {
   const strTime = hours + ":" + minutes + " " + ampm;
   return strTime;
 }
-
-// const GEOSEARCHURI =
-//   "https://maps.googleapis.com/maps/api/geocode/json?address=Moscow&key=AIzaSyAg15L3_mc77wX8TemqE1tPcoieQB3kJ9c";
-// const OPENWEATHERURI =
-//   "https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid=890c761c3de1ec21feefe4b2af7971c9";
-// const WEATHERICON = "http://openweathermap.org/img/w/${result.icon}.png";
-//  fTemp = (cTemp - 32) * 5 / 9
