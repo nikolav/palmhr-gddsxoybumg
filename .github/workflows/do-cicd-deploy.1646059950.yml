@@ -10,28 +10,20 @@ on:
     branches: [ main ]
 
 jobs:
-  
   build:
     runs-on: self-hosted
-
     strategy:
       matrix:
         node-version: [16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-    - run: 
+    - run: |
         cd api
         npm ci
         cd ..
         npm ci
-        # - run: npm test
         npm run build
-        # pm2 restart -ra-palmhr2
-        # pm2 save --force
-        # sudo service nginx restart
