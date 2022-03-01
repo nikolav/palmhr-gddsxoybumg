@@ -1,22 +1,33 @@
-var express      = require('express');
-var path         = require('path');
-var cookieParser = require('cookie-parser');
-var logger       = require('morgan');
-const cors       = require("cors");
+const express      = require('express');
+const path         = require('path');
+const cookieParser = require('cookie-parser');
+const logger       = require('morgan');
+const cors         = require("cors");
 
-var indexRouter = require('./routes/index');
+const indexRouter = require('./routes/index');
 
-var app = express();
 
+const app = express();
+
+// dump unformated
 app.use(logger('combined'));
+
+// parse incoming json bodies
 app.use(express.json());
+
+// parse user input
 app.use(express.urlencoded({ extended: false }));
+
 app.use(cookieParser());
+
+// send static files
 app.use(express.static(path.resolve(__dirname, '../build')));
-// app.use(express.static(path.resolve(__dirname, 'ghrunner', '_work', 'palmhr-gddsxoybumg', 'palmhr-gddsxoybumg', 'build')));
+
+// route xsite requests
 app.use(cors());
 
-app.use('/api',   indexRouter);
+// mount api resource
+app.use('/api', indexRouter);
+
 
 module.exports = app;
-

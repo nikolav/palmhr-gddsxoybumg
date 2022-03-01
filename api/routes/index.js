@@ -1,12 +1,15 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router  = express.Router();
 
 router.get("/", function (req, res, next) {
+
+  // send about
   return res.json({
     message: "welcome",
-    version: "0.0.2",
-    appname: "weatherapp@palmhr",
+    version: process.env.APP_VERSION,
+    appname: process.env.APP_NAME,
   });
+
 });
 
 module.exports = router;
