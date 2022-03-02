@@ -3,7 +3,7 @@ const router  = express.Router();
 
 
 // send about
-router.get("/", function (req, res, next) {
+router.get("/", (req, res, next) => {
   return res.json({
     message: "welcome",
     version: process.env.APP_VERSION,
@@ -13,7 +13,7 @@ router.get("/", function (req, res, next) {
 
 
 // send search-term suggestions
-router.get("/geocode_autocomplete/:input", (req, res, next) => {
+router.get("/geocode_autocomplete/:input", async (req, res, next) => {
 
   // @todo
   // redis cache engine
@@ -26,8 +26,10 @@ router.get("/geocode_autocomplete/:input", (req, res, next) => {
     INPUT
   )}&types=geocode&key=AIzaSyAg15L3_mc77wX8TemqE1tPcoieQB3kJ9c`;
 
-  return res.json({url: GC_AUTOCOMPLETE_URI});
+  const r = await axios(GC_AUTOCOMPLETE_URI);
+  return res.json({r});
   
+
   // try {
   //   axios({
   //     url: GC_AUTOCOMPLETE_URI,
