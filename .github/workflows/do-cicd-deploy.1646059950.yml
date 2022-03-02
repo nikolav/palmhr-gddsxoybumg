@@ -30,4 +30,4 @@ jobs:
         cd ..
         npm ci
         npm run build
-        NODE_ENV=production pm2 restart dora.palmhr@nikolav --update-env
+        NODE_ENV=production pm2 restart doapp2 --update-env
