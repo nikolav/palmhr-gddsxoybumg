@@ -26,19 +26,21 @@ router.get("/geocode_autocomplete/:input", (req, res, next) => {
     INPUT
   )}&types=geocode&key=AIzaSyAg15L3_mc77wX8TemqE1tPcoieQB3kJ9c`;
 
-  try {
-    axios({
-      url: GC_AUTOCOMPLETE_URI,
-      method: "get",
-      responseType: "json",
-    }).then((response) => {
-      return res.json(response);
-    });
-  } catch (error) {
-    return res.json({ error });
-  }
+  return res.json({url: GC_AUTOCOMPLETE_URI});
+  
+  // try {
+  //   axios({
+  //     url: GC_AUTOCOMPLETE_URI,
+  //     method: "get",
+  //     responseType: "json",
+  //   }).then((response) => {
+  //     return res.json(response);
+  //   });
+  // } catch (error) {
+  //   return res.json({ error });
+  // }
 
-  return res.json({ error: -1 });
+  // return res.json({ error: -1 });
 });
 
 module.exports = router;
