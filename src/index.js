@@ -11,10 +11,9 @@ import "./theme/bootstrap.css"; // +bs5 +bootswatch +some-overrides
 import "animate.css"; // +simple ccs amimations
 
 
-
 ReactDOM.render(
   <BrowserRouter>
-    <Root />
+    <Dashboard />
   </BrowserRouter>,
   document.getElementById("pjxvzsvatqm")
 );

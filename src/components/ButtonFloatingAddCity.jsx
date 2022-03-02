@@ -4,6 +4,8 @@ import { Form, ListGroup, Button, Modal, ButtonGroup } from "react-bootstrap";
 import { usePopper } from "react-popper";
 import { motion } from "framer-motion";
 
+import useGeocodeAutocompleteAPI from "../hooks/use-geocode-autocomplete-api";
+
 const lookupdb = [
   "shanghai",
   "lagos",
@@ -104,7 +106,7 @@ const ButtonFloatingAddCity = ({ addPlace }) => {
       {
         name: "offset",
         options: {
-          offset: [1, 4],
+          offset: [-1, -1],
         },
       },
     ],
@@ -126,13 +128,17 @@ const ButtonFloatingAddCity = ({ addPlace }) => {
     setSearchValue("");
     evt.preventDefault();
   };
+  const hideAutocomplete = () => setAutocomplete(false);
 
+  const [autocompleteUrl, setAutocompleteUrl] = useState("");
+  const response = useGeocodeAutocompleteAPI(autocompleteUrl);
+  //
   return (
     <>
       <div className="position-fixed bottom-0 end-0 m-4">
         <Button
           onClick={handleShow}
-          className="fs-5 p-3 rounded-circle shadow"
+          className="border-0 opacity-75 bg-gradient fs-4 p-2 p-md-4 rounded-circle shadow-lg"
           variant="primary"
         >
           ➕
@@ -158,7 +164,7 @@ const ButtonFloatingAddCity = ({ addPlace }) => {
                 <option value="Kyiev">Kyiev</option>
               </Form.Select>
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3" controlId="ControlInput2">
               <Form.Label>Search a Place</Form.Label>
               <div ref={setReferenceElement}>
                 <Form.Control
@@ -168,54 +174,64 @@ const ButtonFloatingAddCity = ({ addPlace }) => {
                   placeholder="Start typing..."
                   ref={refControl}
                   value={searchValue}
-                  onChange={(evt) => setSearchValue(evt.target.value.trim())}
+                  // @todo
+                  onChange={(evt) => setAutocompleteUrl(evt.target.value)}
                   onFocus={(evt) => setAutocomplete(true)}
-                  onBlur={(evt) => setAutocomplete(false)}
+                  // onBlur={(evt) => setAutocomplete(false)}
                   onKeyUp={(evt) => {
                     if (27 === evt.keyCode) {
-                      setAutocomplete(false);
+                      hideAutocomplete();
                       evt.target.blur();
                     }
                   }}
                 />
               </div>
 
-              {/* <motion.div
-                initial={{
-                  opacity: 0,
-                }}
-                animate={{
-                  opacity: 1,
-                }}
-                transition={{
-                  duration: 0.15,
-                }}
-              > */}
-                {autocomplete && (
+              {autocomplete &&
+              response.data?.a?.b
+              && (
+                <motion.div
+                  initial={{
+                    opacity: 0,
+                  }}
+                  animate={{
+                    opacity: 1,
+                  }}
+                  transition={{
+                    duration: 0.15,
+                  }}
+                >
                   <ListGroup
                     ref={setPopperElement}
                     style={{ ...styles.popper, zIndex: 2 }}
                     {...attributes.popper}
                     className="shadow-sm"
                   >
-                    {query_(searchValue).map((city) => (
+                    {query_(response.data.a.b).map((city) => (
                       <ListGroup.Item
                         action
                         key={city}
-                        // @TODO, wont fire
-                        onClick={(evt) => console.log(122)}
+                        onClick={(evt) => {
+                          evt.preventDefault();
+                          setSearchValue(city);
+                          hideAutocomplete();
+                        }}
                       >
                         {city}
                       </ListGroup.Item>
                     ))}
                   </ListGroup>
-                )}
-              {/* </motion.div> */}
+                </motion.div>
+              )}
             </Form.Group>
           </Modal.Body>
           <Modal.Footer className="bg-light border-0 d-flex justify-content-end">
             <ButtonGroup size="lg">
-              <Button className="px-4" type="submit" variant="primary">
+              <Button
+                className="px-4 bg-gradient"
+                type="submit"
+                variant="primary"
+              >
                 OK
               </Button>
               <Button
