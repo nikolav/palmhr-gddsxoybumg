@@ -6,8 +6,8 @@ const router  = express.Router();
 router.get("/", (req, res, next) => {
   return res.json({
     message: "welcome",
-    version: process.env.APP_VERSION,
-    appname: process.env.APP_NAME,
+    version: 1, //process.env.APP_VERSION,
+    appname: 1, //process.env.APP_NAME,
   });
 });
 
@@ -21,14 +21,12 @@ router.get("/geocode_autocomplete/:input", async (req, res, next) => {
 
   const axios = require("axios");
 
-  const { input: INPUT } = req.params;
-  const GC_AUTOCOMPLETE_URI = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${encodeURIComponent(
-    INPUT
-  )}&types=geocode&key=AIzaSyAg15L3_mc77wX8TemqE1tPcoieQB3kJ9c`;
+  // const { input: INPUT } = req.params;
+  const GC_AUTOCOMPLETE_URI = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=Nikol&types=geocode&key=AIzaSyAg15L3_mc77wX8TemqE1tPcoieQB3kJ9c`;
 
   const r = await axios(GC_AUTOCOMPLETE_URI);
-  return res.json({r});
-  
+  return res.json({...r});
+
 
   // try {
   //   axios({
@@ -46,3 +44,4 @@ router.get("/geocode_autocomplete/:input", async (req, res, next) => {
 });
 
 module.exports = router;
+// https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${encodeURIComponent(INPUT)}&types=geocode&key=AIzaSyAg15L3_mc77wX8TemqE1tPcoieQB3kJ9c
