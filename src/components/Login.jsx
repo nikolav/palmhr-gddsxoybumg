@@ -2,10 +2,11 @@ import { useState, useRef } from "react";
 
 import { Form, FormControl, Button, InputGroup } from "react-bootstrap";
 
-// attach classes to nodes for simple effects
+// simple effects
 import { animatecss } from "../utils";
+import "animate.css";
 
-// !
+
 const PASSWORD_ = "palmhr";
 
 function Login({ login }) {
@@ -35,6 +36,7 @@ function Login({ login }) {
                 type="password"
                 onChange={(evt) => setValue(() => evt.target.value)}
                 className="border-0"
+                autoComplete="false"
               />
               <Button
                 type="submit"

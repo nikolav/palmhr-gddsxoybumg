@@ -31,7 +31,6 @@ const animatecss = (e, effect = "headShake") =>
 
     // self remove handler
     function end_(evt) {
-      
       q.class.rm(e, animated, effect);
       q.off({
         target: e,

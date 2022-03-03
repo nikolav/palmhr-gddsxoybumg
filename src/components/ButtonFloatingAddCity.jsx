@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 
 import useGeocodeAutocompleteAPI from "../hooks/use-geocode-autocomplete-api";
 
+import lodash from "lodash";
+
 const ButtonFloatingAddCity = ({ addPlace }) => {
   const [searchValue, setSearchValue] = useState("");
   const [autocomplete, setAutocomplete] = useState(false);
@@ -43,13 +45,27 @@ const ButtonFloatingAddCity = ({ addPlace }) => {
 
   const [autocompleteUrl, setAutocompleteUrl] = useState("Moscow, RU");
   const response = useGeocodeAutocompleteAPI(autocompleteUrl);
+
+  const onFormControlChangeThrottled = 
+  lodash.throttle(
+    (evt) => {
+
+      const input = evt.target.value.trim();
+
+      setSearchValue(input);
+
+      if (input) 
+        setAutocompleteUrl(evt.target.value);
+
+    }, 444);
+
   //
   return (
     <>
       <div className="position-fixed bottom-0 end-0 m-4">
         <Button
           onClick={handleShow}
-          className="border-0 opacity-75 bg-gradient fs-4 p-2 p-md-4 rounded-circle shadow-lg"
+          className="border-0 opacity-75 bg-gradient fs-4 p-4 rounded-circle shadow-lg"
           variant="primary"
         >
           ➕
@@ -85,12 +101,7 @@ const ButtonFloatingAddCity = ({ addPlace }) => {
                   placeholder="Search..."
                   ref={refControl}
                   value={searchValue}
-                  onChange={(evt) => {
-                    const input = evt.target.value.trim();
-                    setSearchValue(input);
-
-                    if (input) setAutocompleteUrl(evt.target.value);
-                  }}
+                  onChange={onFormControlChangeThrottled}
                   onFocus={(evt) => setAutocomplete(true)}
                   onKeyUp={(evt) => {
                     if (27 === evt.keyCode) {
@@ -98,17 +109,13 @@ const ButtonFloatingAddCity = ({ addPlace }) => {
                       evt.target.blur();
                     }
                   }}
-
                   onBlur={(evt) => {
-
                     // @todo, temporary hack
                     // when list item is picked outside search box
                     // runs `click` first, and `blur` hanges..
                     // delay closing clicks to set form value first
                     setTimeout(hideAutocomplete, 234);
-                    
                   }}
-
                 />
               </div>
 

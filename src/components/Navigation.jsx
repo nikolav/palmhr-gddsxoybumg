@@ -1,5 +1,6 @@
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import logoPalmhr from "./Navigation.module.scss";
 
 const Navigation = ({ logout }) => {
   return (
@@ -12,19 +13,22 @@ const Navigation = ({ logout }) => {
       >
         <Container fluid="sm">
           <Link to="/" className="text-decoration-none">
-            <Navbar.Brand className="fs-3 opacity-50">Weather Web App</Navbar.Brand>
+            <Navbar.Brand className={`fs-3 opacity-50 ${logoPalmhr.logo}`}>
+              Weather Web App
+            </Navbar.Brand>
           </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
               <Nav.Link
+                className="me-4"
                 target="_blank"
                 href="https://github.com/nikolav/palmhr-gddsxoybumg.git"
               >
-                <i className="fs-5 fa-brands fa-github"></i>
+                <i className="fs-4 fa-brands fa-github"></i>
               </Nav.Link>
-              <Nav.Link onClick={logout} className="ms-4">
-                <i className="fs-5 fa-solid fa-arrow-right-from-bracket"></i>
+              <Nav.Link onClick={logout} className="--ms-4">
+                <i className="fs-4 fa-solid fa-arrow-right-from-bracket"></i>
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
