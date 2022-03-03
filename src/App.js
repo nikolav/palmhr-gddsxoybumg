@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState }            from "react";
-import { Container, Row, Col } from "react-bootstrap"; // implements bs framework
+import { Container, Row, Col } from "react-bootstrap";
 import { motion }              from "framer-motion";
 import { 
   DragDropContext, 

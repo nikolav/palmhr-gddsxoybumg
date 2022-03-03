@@ -7,19 +7,25 @@ const useHttpGet = ({ url }) => {
     data: null,
     url,
   }));
-  
 
   useEffect(() => {
     const fetch_ = async () => {
       try {
+
         setResponse((r) => ({ ...r, loading: 1 }));
-        console.log(`[@fetch] ${url}`);
+
+
+        // console.log(`[@fetch] ${url}`);
+
         const response = await fetch(url);
         const data     = await response.json();
+
         setResponse((r) => ({ ...r, data }));
       } catch (error) {
+
         setResponse((r) => ({ ...r, error }));
       } finally {
+        
         setResponse((r) => ({ ...r, loading: 0 }));
       }
     };

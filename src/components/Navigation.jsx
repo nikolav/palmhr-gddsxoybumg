@@ -6,7 +6,7 @@ const Navigation = ({ logout }) => {
     <>
       <Navbar bg="--light" expand="sm" variant="dark" className="mb-5 bg-custom-01 border-0">
         <Container fluid="sm">
-          <Navbar.Brand href="/">.weatherapp</Navbar.Brand>
+          <Navbar.Brand href="/">Weather Web App</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
