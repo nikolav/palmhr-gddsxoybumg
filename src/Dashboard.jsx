@@ -12,12 +12,15 @@ import {
   Stack,
 } from "react-bootstrap";
 
-import useGeocodeAutocompleteAPI from "./hooks/use-geocode-autocomplete-api";
+// import useGeocodeAutocompleteAPI from "./hooks/use-geocode-autocomplete-api";
+
+import drawing from "./etc/drawing.svg";
+import addPlus from "./etc/add-plus.svg";
 
 const Dashboard = () => {
   const [value, setValue] = useState("");
-  const response = useGeocodeAutocompleteAPI(value);
-  
+  // const response = useGeocodeAutocompleteAPI(value);
+
   return (
     <Container fluid="sm">
       <Col>
@@ -70,19 +73,33 @@ const Dashboard = () => {
             </Card.Body>
           </Card>
 
-            <motion.div
-              initial={{
-                opacity: 0,
-              }}
-              animate={{
-                opacity: 1,
-              }}
-              className="d-flex justify-content-center"
-            >
-              <div className="bg-dark text-light rounded-2 w-100 p-5 shadow">
-                <pre>{JSON.stringify(response, null, 2)}</pre>
+          <motion.div
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+            }}
+            className="d-flex justify-content-center"
+          >
+            <div className="bg-custom-01 text-light rounded-2 w-100 p-5 shadow">
+              {/* <pre>{JSON.stringify(response, null, 2)}</pre> */}
+              <pre>{JSON.stringify(value, null, 2)}</pre>
+              <hr />
+              <div
+                className="border border-danger --p-2 --w-25"
+                style={{ width: 122 }}
+              >
+                <img src={drawing} alt="drawing.svg" />
               </div>
-            </motion.div>
+              <div
+                className="border border-danger --p-2 --w-25"
+                style={{ width: 55 }}
+              >
+                <img src={addPlus} alt="add-plus.svg" />
+              </div>
+            </div>
+          </motion.div>
         </Row>
       </Col>
     </Container>

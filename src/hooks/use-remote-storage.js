@@ -1,5 +1,7 @@
+
 import { useState, useEffect } from "react";
 
+// @todo
 const useRemoteStorage = ({ entry, size }) => {
 
     return {
@@ -10,3 +12,4 @@ const useRemoteStorage = ({ entry, size }) => {
 };
 
 export default useRemoteStorage;
+

@@ -3,10 +3,10 @@ import { Form, ListGroup, Button, Modal, ButtonGroup } from "react-bootstrap";
 
 import { usePopper } from "react-popper";
 import { motion } from "framer-motion";
-
+import { throttle } from "lodash";
 import useGeocodeAutocompleteAPI from "../hooks/use-geocode-autocomplete-api";
 
-import lodash from "lodash";
+import addPlus from "../etc/add-plus.svg";
 
 const ButtonFloatingAddCity = ({ addPlace }) => {
   const [searchValue, setSearchValue] = useState("");
@@ -14,6 +14,7 @@ const ButtonFloatingAddCity = ({ addPlace }) => {
 
   const [referenceElement, setReferenceElement] = useState(null);
   const [popperElement, setPopperElement] = useState(null);
+
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
     modifiers: [
       {
@@ -26,38 +27,33 @@ const ButtonFloatingAddCity = ({ addPlace }) => {
     placement: "bottom-start",
   });
 
+  const [show, setShow] = useState(false);
   const refControl = useRef();
   const refControlSelect = useRef();
-  const [show, setShow] = useState(false);
 
+  const clearSearchValue = () => setSearchValue("");
   const handleClose = () => {
     setShow(false);
-    setSearchValue("");
+    clearSearchValue();
   };
   const handleShow = () => setShow(true);
   const submit_ = (evt) => {
     addPlace(refControl.current.value || refControlSelect.current.value);
     handleClose();
-    setSearchValue("");
+    clearSearchValue();
     evt.preventDefault();
   };
   const hideAutocomplete = () => setAutocomplete(false);
 
   const [autocompleteUrl, setAutocompleteUrl] = useState("Moscow, RU");
   const response = useGeocodeAutocompleteAPI(autocompleteUrl);
+  const onFormControlChangeThrottled = throttle(({ target }) => {
+    const input = target.value.trim();
 
-  const onFormControlChangeThrottled = 
-  lodash.throttle(
-    (evt) => {
+    setSearchValue(input);
 
-      const input = evt.target.value.trim();
-
-      setSearchValue(input);
-
-      if (input) 
-        setAutocompleteUrl(evt.target.value);
-
-    }, 444);
+    if (input) setAutocompleteUrl(target.value);
+  }, 456);
 
   //
   return (
@@ -65,10 +61,15 @@ const ButtonFloatingAddCity = ({ addPlace }) => {
       <div className="position-fixed bottom-0 end-0 m-4">
         <Button
           onClick={handleShow}
-          className="border-0 opacity-75 bg-gradient fs-4 p-4 rounded-circle shadow-lg"
+          className="widget-actions border-0 p-4 rounded-circle shadow-lg"
           variant="primary"
         >
-          ➕
+          {/* ➕ */}
+          <img
+            style={{ width: 38 }}
+            src={addPlus}
+            alt="Add a Place"
+          />
         </Button>
       </div>
 
@@ -83,7 +84,7 @@ const ButtonFloatingAddCity = ({ addPlace }) => {
               <Form.Select
                 size="lg"
                 ref={refControlSelect}
-                onChange={() => setSearchValue("")}
+                onChange={clearSearchValue}
               >
                 <option disabled>Select City</option>
                 <option value="Paris">Paris</option>
@@ -114,7 +115,7 @@ const ButtonFloatingAddCity = ({ addPlace }) => {
                     // when list item is picked outside search box
                     // runs `click` first, and `blur` hanges..
                     // delay closing clicks to set form value first
-                    setTimeout(hideAutocomplete, 234);
+                    setTimeout(hideAutocomplete, 256);
                   }}
                 />
               </div>
@@ -128,7 +129,7 @@ const ButtonFloatingAddCity = ({ addPlace }) => {
                     opacity: 1,
                   }}
                   transition={{
-                    duration: 0.15,
+                    duration: 0.18,
                   }}
                 >
                   <ListGroup

@@ -1,5 +1,14 @@
-<svg width="31.879mm" height="15.94mm" version="1.1" viewBox="0 0 31.879 15.94" xmlns="http://www.w3.org/2000/svg">
-  <g transform="translate(-8.9975 -6.1641)">
-    <path d="m8.9975 6.1641 15.94 15.94 15.94-15.94z" stroke-width=".26458"/>
+<svg version="1.1" viewBox="0 0 200.17 184.49" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient id="a" x1="65.399" x2="248.25" y1="231.24" y2="231.24" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e8ff00" offset="0"/>
+      <stop stop-color="#00ffeb" offset="1"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(-540.38 -531)">
+    <g transform="translate(-7.0846 115.75)">
+      <circle cx="672" cy="523.53" r="75.63" fill="#f60"/>
+      <path transform="translate(482.06 276.25)" d="m193.19 323.49-50.939-40.294-62.071 19.12 22.58-60.898-37.365-53.125 64.895 2.6568 38.978-51.953 17.527 62.54 61.455 21.016-54.063 35.995z" fill="url(#a)" style="mix-blend-mode:overlay"/>
+    </g>
   </g>
 </svg>

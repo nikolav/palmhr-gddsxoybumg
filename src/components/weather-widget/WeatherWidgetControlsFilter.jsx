@@ -5,9 +5,9 @@ import { Dropdown } from "react-bootstrap";
 // access node in order to position the Menu
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
   <div
-    onClick={(e) => {
-      e.preventDefault();
-      onClick(e);
+    onClick={(evt) => {
+      evt.preventDefault();
+      onClick(evt);
     }}
     ref={ref}
     className="widget-actions"
@@ -29,6 +29,8 @@ const WeatherWidgetControlsFilter = ({ filters, setShowFilter }) => {
 
   return (
     <Dropdown align="end" autoClose="outside">
+
+      {/* pass custom component as a toggle button */}
       <Dropdown.Toggle as={CustomToggle}></Dropdown.Toggle>
         <Dropdown.Menu>
           <Dropdown.ItemText className="text-center fst-italic text-muted small">
@@ -59,6 +61,8 @@ const WeatherWidgetControlsFilter = ({ filters, setShowFilter }) => {
             Wind
           </Dropdown.Item>
         </Dropdown.Menu>
+
+        
     </Dropdown>
   );
 };
