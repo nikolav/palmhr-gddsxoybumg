@@ -7,7 +7,7 @@ name: do-cicd-deploy.1646059950
 
 on:
   push:
-    branches: [ main ]
+    branches: [ --main ]
 
 jobs:
   build:
@@ -29,5 +29,5 @@ jobs:
         npm ci
         cd ..
         npm ci
-        npm run build
+        # npm run build
         # NODE_ENV=production pm2 restart doapp0 --update-env

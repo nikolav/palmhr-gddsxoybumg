@@ -13,6 +13,7 @@ import iconFog from "../../etc/icon-fog.svg";
 import iconHaze from "../../etc/icon-haze.svg";
 import iconSmoke from "../../etc/icon-smoke.svg";
 import iconMist from "../../etc/icon-mist.svg";
+import iconCloudsFew from "../../etc/icon-clouds-few.svg";
 
 const weatherStatus = {
   sun: iconSun,
@@ -23,6 +24,7 @@ const weatherStatus = {
   haze: iconHaze,
   smoke: iconSmoke,
   mist: iconMist,
+  "few clouds": iconCloudsFew,
 };
 
 const WeatherWidget = ({ address, removePlace }) => {
@@ -200,6 +202,8 @@ function getIcon(description_) {
       return weatherStatus["smoke"];
     case description_.includes("mist"):
       return weatherStatus["mist"];
+    case description_.includes("few clouds"):
+      return weatherStatus["few clouds"];
     default:
       return weatherStatus["sun"];
   }
