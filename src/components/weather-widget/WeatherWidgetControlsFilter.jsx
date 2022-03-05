@@ -1,6 +1,6 @@
 import React from "react";
 import { Dropdown } from "react-bootstrap";
-
+import iconFilter from "../../etc/icon-filter.svg";
 
 // access node in order to position the Menu
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
@@ -12,7 +12,7 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
     ref={ref}
     className="widget-actions"
   >
-    <i className="cursor-pointer fa-solid fa-filter"></i>
+    <img style={{width:18}} className="cursor-pointer" src={iconFilter} alt="display options" />
   </div>
 ));
 

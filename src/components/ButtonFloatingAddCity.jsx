@@ -7,6 +7,8 @@ import { throttle } from "lodash";
 import useGeocodeAutocompleteAPI from "../hooks/use-geocode-autocomplete-api";
 
 import addPlus from "../etc/add-plus.svg";
+import iconAdd from "../etc/icon-add.svg";
+
 
 const ButtonFloatingAddCity = ({ addPlace }) => {
   const [searchValue, setSearchValue] = useState("");
@@ -65,11 +67,7 @@ const ButtonFloatingAddCity = ({ addPlace }) => {
           variant="primary"
         >
           {/* ➕ */}
-          <img
-            style={{ width: 38 }}
-            src={addPlus}
-            alt="Add a Place"
-          />
+          <img style={{ width: 38 }} src={iconAdd} alt="Add a Place" />
         </Button>
       </div>
 
@@ -124,11 +122,9 @@ const ButtonFloatingAddCity = ({ addPlace }) => {
                 <motion.div
                   initial={{
                     opacity: 0,
-                    x: 12,
                   }}
                   animate={{
                     opacity: 1,
-                    x: 0,
                   }}
                   transition={{
                     duration: 0.22,

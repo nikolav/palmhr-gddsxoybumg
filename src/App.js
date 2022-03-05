@@ -17,7 +17,7 @@ const App = ({ logout }) => {
 
   // setup root state
   const [widgets, setWidgets] = useState(
-    ["Belgrade, SR", "Wien, AU", "Riyadh, SA", "Dubai, UE"]
+    ["Belgrade, Serbia", "Wien, Austria", "Riyadh, SA", "Dubai, UAE"]
       .sort(() => Math.random() - 0.5 ));
 
   // management points

@@ -21,14 +21,16 @@ const Navigation = ({ logout }) => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
               <Nav.Link
-                className="me-4"
+                className="me-4 d-flex align-items-center"
                 target="_blank"
                 href="https://github.com/nikolav/palmhr-gddsxoybumg.git"
               >
-                <i className="fs-4 fa-brands fa-github"></i>
+                <i className="fs-4 fa-brands fa-github"></i> 
+                <span className="ms-3 d-sm-none"> Contribute</span>
               </Nav.Link>
-              <Nav.Link onClick={logout} className="--ms-4">
+              <Nav.Link onClick={logout} className="--ms-4 d-flex align-items-center">
                 <i className="fs-4 fa-solid fa-arrow-right-from-bracket"></i>
+                <span className="ms-3 d-sm-none"> Logout</span>
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
