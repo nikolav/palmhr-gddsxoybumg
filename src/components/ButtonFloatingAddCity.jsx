@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import { throttle } from "lodash";
 import useGeocodeAutocompleteAPI from "../hooks/use-geocode-autocomplete-api";
 
-import addPlus from "../etc/add-plus.svg";
 import iconAdd from "../etc/icon-add.svg";
 
 
@@ -40,10 +39,10 @@ const ButtonFloatingAddCity = ({ addPlace }) => {
   };
   const handleShow = () => setShow(true);
   const submit_ = (evt) => {
+    evt.preventDefault();
     addPlace(refControl.current.value || refControlSelect.current.value);
     handleClose();
     clearSearchValue();
-    evt.preventDefault();
   };
   const hideAutocomplete = () => setAutocomplete(false);
 
@@ -104,8 +103,8 @@ const ButtonFloatingAddCity = ({ addPlace }) => {
                   onFocus={(evt) => setAutocomplete(true)}
                   onKeyUp={(evt) => {
                     if (27 === evt.keyCode) {
-                      hideAutocomplete();
                       evt.target.blur();
+                      hideAutocomplete();
                     }
                   }}
                   onBlur={(evt) => {

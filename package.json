@@ -25,7 +25,8 @@
     "build": "react-scripts build",
     "build:bs": "sass --style expanded --source-map --embed-sources --no-error-css src/theme/bootstrap.scss:src/theme/bootstrap.css",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "test:unit": "react-scripts test src/utils/utils.test.js"
   },
   "eslintConfig": {
     "extends": [
@@ -47,6 +48,7 @@
   },
   "devDependencies": {
     "html5-boilerplate": "^8.0.0",
+    "jest": "^27.5.1",
     "sass": "^1.49.9"
   }
 }
