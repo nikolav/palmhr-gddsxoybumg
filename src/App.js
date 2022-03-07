@@ -1,24 +1,26 @@
 import "./App.css";
-import { useState }            from "react";
+import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { motion }              from "framer-motion";
-import { 
-  DragDropContext, 
-  Draggable, 
-  Droppable
-} from "react-beautiful-dnd";
-import WeatherWidget           from "./components/weather-widget/WeatherWidget";
-import ButtonFloatingAddCity   from "./components/ButtonFloatingAddCity";
-import Navigation              from "./components/Navigation";
+import { motion } from "framer-motion";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import WeatherWidget from "./components/weather-widget/WeatherWidget";
+import ButtonFloatingAddCity from "./components/ButtonFloatingAddCity";
+import Navigation from "./components/Navigation";
 
-
+import useNetworkStatus from "./hooks/use-network-status";
 
 const App = ({ logout }) => {
 
   // setup root state
+  
+  const { online } = useNetworkStatus();
+  // console.log(online);
+
   const [widgets, setWidgets] = useState(
-    ["Belgrade, Serbia", "Wien, Austria", "Riyadh, SA", "Dubai, UAE"]
-      .sort(() => Math.random() - 0.5 ));
+    ["Belgrade, Serbia", "Wien, Austria", "Riyadh, SA", "Dubai, UAE"].sort(
+      () => Math.random() - 0.5
+    )
+  );
 
   // management points
   const addPlace = (place) => {
@@ -32,7 +34,7 @@ const App = ({ logout }) => {
   // handle dnd-drop reorder
   const dragEnd_ = (result) => {
     if (!result.destination) return;
-    const items       = [...widgets];
+    const items = [...widgets];
     const [reordered] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reordered);
 
@@ -41,7 +43,7 @@ const App = ({ logout }) => {
 
   return (
     <>
-      <Navigation logout={logout} />
+      <Navigation logout={logout} online={online} />
       <Container fluid>
         <Row>
           <Col>

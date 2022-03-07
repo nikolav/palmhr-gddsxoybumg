@@ -1,8 +1,9 @@
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import logoPalmhr from "./Navigation.module.scss";
+import NetworkStatus from "./NetworkStatus";
 
-const Navigation = ({ logout }) => {
+const Navigation = ({ logout, online }) => {
   return (
     <>
       <Navbar
@@ -14,6 +15,7 @@ const Navigation = ({ logout }) => {
         <Container fluid="sm">
           <Link to="/" className="text-decoration-none">
             <Navbar.Brand className={`fs-3 opacity-50 ${logoPalmhr.logo}`}>
+            <NetworkStatus online={online} />
               Weather Web App
             </Navbar.Brand>
           </Link>
@@ -25,10 +27,13 @@ const Navigation = ({ logout }) => {
                 target="_blank"
                 href="https://github.com/nikolav/palmhr-gddsxoybumg.git"
               >
-                <i className="fs-4 fa-brands fa-github"></i> 
+                <i className="fs-4 fa-brands fa-github"></i>
                 <span className="ms-3 d-sm-none"> Contribute</span>
               </Nav.Link>
-              <Nav.Link onClick={logout} className="--ms-4 d-flex align-items-center">
+              <Nav.Link
+                onClick={logout}
+                className="--ms-4 d-flex align-items-center"
+              >
                 <i className="fs-4 fa-solid fa-arrow-right-from-bracket"></i>
                 <span className="ms-3 d-sm-none"> Logout</span>
               </Nav.Link>
