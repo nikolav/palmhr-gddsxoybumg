@@ -5,7 +5,7 @@ const useGeocodeAutocompleteAPI = (INPUT = "") => {
   const url =
     "" +
     // local @3031
-    "http://localhost:3031" +
+    // "http://localhost:3031" +
     "/api/geocode_autocomplete/" +
     encodeURIComponent(INPUT) +
     "";
