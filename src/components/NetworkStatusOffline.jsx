@@ -1,15 +1,13 @@
 import React from "react";
 
-import iconOnline  from "../etc/icon-comm-on.svg";
-import iconOffline from "../etc/icon-comm-off.svg";
+import iconOffline from "../etc/icon-offline.svg";
 
 const NetworkStatus = ({ online }) => {
-  // console.log(online);
   return (
     <img
       className="img-fluid me-3"
-      src={online ? iconOnline : iconOffline}
-      alt="network"
+      src={iconOffline}
+      alt="offline"
       style={{ width: 20 }}
     />
   );

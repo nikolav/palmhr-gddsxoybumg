@@ -1,7 +1,8 @@
 import { Navbar, Container, Nav } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link }   from "react-router-dom";
 import logoPalmhr from "./Navigation.module.scss";
-import NetworkStatus from "./NetworkStatus";
+import NetworkStatusOnline  from "./NetworkStatusOnline";
+import NetworkStatusOffline from "./NetworkStatusOffline";
 
 const Navigation = ({ logout, online }) => {
   return (
@@ -15,7 +16,7 @@ const Navigation = ({ logout, online }) => {
         <Container fluid="sm">
           <Link to="/" className="text-decoration-none">
             <Navbar.Brand className={`fs-3 opacity-50 ${logoPalmhr.logo}`}>
-            <NetworkStatus online={online} />
+              {online ? <NetworkStatusOnline /> : <NetworkStatusOffline />}
               Weather Web App
             </Navbar.Brand>
           </Link>

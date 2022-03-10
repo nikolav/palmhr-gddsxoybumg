@@ -1,7 +1,5 @@
 const formatAddress = (address) => {
-  const match = address.split(/\s*,\s*/);
-  return match?.length
-    ? match.shift() + (match.length ? ", " + match.pop() : "")
-    : "";
+  return (address.match(/^([^,]{0,11})/)[1] || "").substring(0, 14);
 };
+
 export default formatAddress;

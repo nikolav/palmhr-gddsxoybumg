@@ -14,7 +14,7 @@ const App = ({ logout }) => {
   // setup root state
   
   const { online } = useNetworkStatus();
-  // console.log(online);
+  console.log(online);
 
   const [widgets, setWidgets] = useState(
     ["Belgrade, Serbia", "Wien, Austria", "Riyadh, SA", "Dubai, UAE"].sort(

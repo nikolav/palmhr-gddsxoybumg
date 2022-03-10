@@ -85,6 +85,7 @@ const WeatherWidget = ({ address, removePlace }) => {
           </div>
         </Card.Header>
         <Card.Body>
+          {/* XXXXXXXXXXXXXX */}
           <Card.Title>{utils.formatAddress(address)}</Card.Title>
           <Card.Text>
             <strong className="fs-3">
@@ -96,7 +97,7 @@ const WeatherWidget = ({ address, removePlace }) => {
               <img
                 src={utils.icon(description)}
                 alt={address}
-                style={{ width: "3em", height: "auto" }}
+                style={{ height: 30 }}
                 className="opacity-75"
               />
             )}
