@@ -6,9 +6,9 @@
 
 .widget-actions {
   color: white !important;
-  opacity: .55;
+  opacity: .88;
   &:hover {
-    opacity: .66;
+    opacity: 1;
   }
 }
 
@@ -25,6 +25,9 @@ $card-color: #fff;
 // $bg-gradient-card-top    : #507581;
 // $bg-gradient-card-botton : #689c9f;
 
+$modal-md: 640px;
+$modal-lg: 640px;
+$modal-xl: 640px;
 
 /*!
  * Bootstrap v5.1.3 (https://getbootstrap.com/)

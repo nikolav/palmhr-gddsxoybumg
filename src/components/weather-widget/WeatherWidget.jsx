@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
-import WeatherWidgetControlsDragHandles from "./WeatherWidgetControlsDragHandles";
+// import WeatherWidgetControlsDragHandles from "./WeatherWidgetControlsDragHandles";
 import WeatherWidgetControlsFilter from "./WeatherWidgetControlsFilter";
 import WeatherWidgetControlsRemove from "./WeatherWidgetControlsRemove";
 import WeatherWidgetData from "./WeatherWidgetData";
@@ -69,57 +69,81 @@ const WeatherWidget = ({ address, removePlace }) => {
   return (
     "number" == typeof temp && (
       <Card
-        style={{ width: 222 }}
+        // style={{ width: 222 }}
+        style={{ width: 359 }}
         className="p-2 fs-6 rounded-big shadow-sm text-center flex-shrink-0"
       >
-        <Card.Header className="border-0 bg-transparent">
-          <div className="d-flex align-items-center justify-content-between">
-            <WeatherWidgetControlsDragHandles />
-            <div className="d-flex gap-3">
-              <WeatherWidgetControlsFilter
-                filters={showFilter}
-                setShowFilter={setShowFilter}
-              />
-              <WeatherWidgetControlsRemove removePlace={removePlace} />
-            </div>
+        <Card.Header
+          style={{ paddingTop: 8, paddingRight: 28 }}
+          className="border-0 bg-transparent"
+        >
+          {/* <WeatherWidgetControlsDragHandles /> */}
+          <div className="d-flex gap-3 align-items-center justify-content-end">
+            <WeatherWidgetControlsFilter
+              filters={showFilter}
+              setShowFilter={setShowFilter}
+            />
+            <WeatherWidgetControlsRemove removePlace={removePlace} />
           </div>
         </Card.Header>
-        <Card.Body>
-          {/* XXXXXXXXXXXXXX */}
+        <Card.Body 
+        style={{ 
+          paddingTop: 12,
+          paddingLeft: 33,
+          paddingRight: 33
+         }}
+        >
           <Card.Title>{utils.formatAddress(address)}</Card.Title>
           <Card.Text>
-            <strong className="fs-3">
-              {temp} {"\u00b0"}C
+            <strong className="--fs-1 fw-normal"
+              style={{fontSize: "2.68em", lineHeight: "1.66em"}}
+            >
+              {utils.numberSign(temp)}{"\u00b0"}C
             </strong>
           </Card.Text>
-          <Card.Text>
+          <Card.Text
+            style={{paddingTop: 12}}
+          >
             {description && (
               <img
                 src={utils.icon(description)}
                 alt={address}
-                style={{ height: 30 }}
-                className="opacity-75"
+                style={{ height: 60 }}
               />
             )}
           </Card.Text>
-          <Card.Text>
-            <em className="opacity-75">{utils.ucFirst(description)}</em>
+          <Card.Text
+            style={{paddingTop: 16}}
+          >
+            <span>{utils.ucFirst(description)}</span>
           </Card.Text>
-          <div style={{ fontSize: "90%" }}>
+          <div style={{
+             fontSize: "90%", 
+             lineHeight: "2em",
+             paddingTop: 7,
+             paddingBottom: 7
+            }}
+          >
             {showFilter.temp && (
               <>
-                <WeatherWidgetData name="Min" value={`${tempMin} \u00b0C`} />
-                <WeatherWidgetData name="Max" value={`${tempMax} \u00b0C`} />
+                <WeatherWidgetData
+                  name="Min Temperature:"
+                  value={`${tempMin} \u00b0C`}
+                />
+                <WeatherWidgetData
+                  name="Max Temperature:"
+                  value={`${tempMax} \u00b0C`}
+                />
               </>
             )}
             {showFilter.times && (
               <>
-                <WeatherWidgetData name="Sunrise" value={sunrise} />
-                <WeatherWidgetData name="Sunset" value={sunset} />
+                <WeatherWidgetData name="Sunset:" value={sunset} />
+                <WeatherWidgetData name="Sunrise:" value={sunrise} />
               </>
             )}
             {showFilter.wind && (
-              <WeatherWidgetData name="Wind" value={`${wind}ms`} />
+              <WeatherWidgetData name="Wind:" value={`${wind}ms`} />
             )}
           </div>
         </Card.Body>

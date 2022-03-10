@@ -10,11 +10,7 @@ import Navigation from "./components/Navigation";
 import useNetworkStatus from "./hooks/use-network-status";
 
 const App = ({ logout }) => {
-
-  // setup root state
-  
   const { online } = useNetworkStatus();
-  console.log(online);
 
   const [widgets, setWidgets] = useState(
     ["Belgrade, Serbia", "Wien, Austria", "Riyadh, SA", "Dubai, UAE"].sort(
@@ -51,7 +47,7 @@ const App = ({ logout }) => {
               <Droppable droppableId="dd-droppable" direction="horizontal">
                 {(provided) => (
                   <div
-                    className="dd-context d-flex flex-wrap gap-2 justify-content-center"
+                    className="dd-context d-flex flex-wrap gap-palmhr justify-content-center"
                     {...provided.droppableProps}
                     ref={provided.innerRef}
                   >

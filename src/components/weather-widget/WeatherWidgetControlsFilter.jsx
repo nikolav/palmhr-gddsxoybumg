@@ -11,13 +11,13 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
     }}
     ref={ref}
     className="widget-actions"
-    style={{ "verticalAlign": "initial" }}
+    style={{ verticalAlign: "initial", marginRight: -2 }}
   >
     <img
-      style={{ width: 18, marginTop: -3}}
-      className="cursor-pointer"
+      style={{ height: 17, marginTop: -5 }}
+      className="cursor-pointer me-1"
       src={iconFilter}
-      alt="display options"
+      alt="options"
     />
   </div>
 ));
@@ -37,7 +37,18 @@ const WeatherWidgetControlsFilter = ({ filters, setShowFilter }) => {
     <Dropdown align="end" autoClose="outside">
       {/* pass custom component as a toggle button */}
       <Dropdown.Toggle as={CustomToggle}></Dropdown.Toggle>
-      <Dropdown.Menu>
+      <Dropdown.Menu
+        popperConfig={{
+          modifiers: [
+            {
+              name: "offset",
+              options: {
+                offset: [35, -2],
+              },
+            },
+          ],
+        }}
+      >
         <Dropdown.ItemText className="text-center fst-italic text-muted small">
           Select Fields to display
         </Dropdown.ItemText>

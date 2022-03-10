@@ -49,7 +49,10 @@ const ButtonFloatingAddCity = ({ addPlace }) => {
 
   const [autocompleteUrl, setAutocompleteUrl] = useState("Moscow, RU");
   const response = useGeocodeAutocompleteAPI(autocompleteUrl);
-  const  setAutocompleteUrlDebounced = useCallback(debounce(setAutocompleteUrl, 345), []);
+  const setAutocompleteUrlDebounced = useCallback(
+    debounce(setAutocompleteUrl, 345),
+    []
+  );
   const onFormControlChange = ({ target }) => {
     const input = target.value.trim();
 
@@ -75,31 +78,47 @@ const ButtonFloatingAddCity = ({ addPlace }) => {
 
       <Modal show={show} onHide={handleClose}>
         <Form onSubmit={submit_}>
-          <Modal.Header className="bg-transparent border-bottom-0" closeButton>
-            <Modal.Title>Add a Place</Modal.Title>
+          <Modal.Header
+            // closeButton
+            className="border-bottom border-bottom-1"
+            style={{
+              paddingTop: ".72em",
+              paddingLeft: "2.2em",
+              paddingRight: "2.2em",
+              paddingBottom: "1.75em",
+            }}
+          >
+            <Modal.Title
+              className="bg-light w-100"
+              style={{
+                height: "2em",
+              }}
+            ></Modal.Title>
           </Modal.Header>
-          <Modal.Body>
-            <Form.Group className="mb-4">
-              <Form.Label>Name of the City</Form.Label>
-              <Form.Select
-                size="lg"
-                ref={refControlSelect}
-                onChange={clearSearchValue}
+          <Modal.Body
+            style={{
+              paddingBottom: "10.73em",
+              paddingLeft: "2.2em",
+              paddingRight: "2.2em",
+              paddingTop: 0,
+              marginTop: -6,
+            }}
+          >
+            <Form.Group className="mb-3" controlId="ControlInputSearch">
+              <Form.Label
+                className="mb-0 fw-bold opacity-50 text-black-50 mb-1"
+                style={{ fontSize: "75%" }}
               >
-                <option disabled>Select City</option>
-                <option value="Paris">Paris</option>
-                <option value="Riga">Riga</option>
-                <option value="Kyiev">Kyiev</option>
-              </Form.Select>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="ControlInput2">
-              <Form.Label>Find a Place</Form.Label>
+                NAME OF THE CITY
+              </Form.Label>
               <div ref={setReferenceElement}>
                 <Form.Control
+                  className="opacity-50"
+                  style={{}}
                   size="lg"
                   autoComplete="off"
                   type="text"
-                  placeholder="Search..."
+                  placeholder="Select City"
                   ref={refControl}
                   value={searchValue}
                   onChange={onFormControlChange}
@@ -136,12 +155,12 @@ const ButtonFloatingAddCity = ({ addPlace }) => {
                     ref={setPopperElement}
                     style={{ ...styles.popper, zIndex: 2 }}
                     {...attributes.popper}
-                    className="shadow-sm"
+                    className="shadow"
                   >
                     {response.data.map((city) => (
                       <ListGroup.Item
                         action
-                        className="p-3 m-0"
+                        className="p-3 m-0 border-0"
                         key={city}
                         onClick={(evt) => {
                           evt.preventDefault();

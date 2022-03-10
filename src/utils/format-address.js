@@ -1,5 +1,5 @@
 const formatAddress = (address) => {
-  return (address.match(/^([^,]{0,11})/)[1] || "").substring(0, 14);
+  return address.match(/^([^,]{0,17})/)[1] || "...";
 };
 
 export default formatAddress;
