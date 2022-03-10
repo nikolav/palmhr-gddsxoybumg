@@ -1,13 +1,14 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import { Form, ListGroup, Button, Modal, ButtonGroup } from "react-bootstrap";
 
 import { usePopper } from "react-popper";
 import { motion } from "framer-motion";
-import { throttle } from "lodash";
+// import { throttle } from "lodash";
 import useGeocodeAutocompleteAPI from "../hooks/use-geocode-autocomplete-api";
 
 import iconAdd from "../etc/icon-add.svg";
 
+const { debounce } = require("nikolav-q").func;
 
 const ButtonFloatingAddCity = ({ addPlace }) => {
   const [searchValue, setSearchValue] = useState("");
@@ -48,13 +49,15 @@ const ButtonFloatingAddCity = ({ addPlace }) => {
 
   const [autocompleteUrl, setAutocompleteUrl] = useState("Moscow, RU");
   const response = useGeocodeAutocompleteAPI(autocompleteUrl);
-  const onFormControlChangeThrottled = throttle(({ target }) => {
+  const  setAutocompleteUrlDebounced = useCallback(debounce(setAutocompleteUrl, 345), []);
+  const onFormControlChange = ({ target }) => {
     const input = target.value.trim();
 
     setSearchValue(input);
 
-    if (input) setAutocompleteUrl(target.value);
-  }, 456);
+    // if (input) setAutocompleteUrl(target.value);
+    if (input) setAutocompleteUrlDebounced(target.value);
+  };
 
   //
   return (
@@ -99,7 +102,7 @@ const ButtonFloatingAddCity = ({ addPlace }) => {
                   placeholder="Search..."
                   ref={refControl}
                   value={searchValue}
-                  onChange={onFormControlChangeThrottled}
+                  onChange={onFormControlChange}
                   onFocus={(evt) => setAutocomplete(true)}
                   onKeyUp={(evt) => {
                     if (27 === evt.keyCode) {

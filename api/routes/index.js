@@ -1,10 +1,11 @@
+
 // require("dotenv").config();
 const express = require("express");
-const router = express.Router();
+const router  = express.Router();
 
 
 
-// GET @ /api
+// GET /api
 // send about
 router.get("/", (req, res, next) => {
   const { payload } = req.params;
@@ -18,7 +19,7 @@ router.get("/", (req, res, next) => {
 
 
 
-// GET @ /api/geocode_autocomplete/:input
+// GET /api/geocode_autocomplete/:input
 // send autocomplete, param required
 router.get("/geocode_autocomplete/:input", async (req, res, next) => {
   //
@@ -31,7 +32,6 @@ router.get("/geocode_autocomplete/:input", async (req, res, next) => {
   const { input: INPUT }    = req.params;
   const GC_AUTOCOMPLETE_URI = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${INPUT}&types=geocode&key=AIzaSyAg15L3_mc77wX8TemqE1tPcoieQB3kJ9c`;
 
-
   // query ggle for autocomplete matches
   return axios(GC_AUTOCOMPLETE_URI).then(({ data }) => {
     let autocomplete = [];
@@ -43,6 +43,7 @@ router.get("/geocode_autocomplete/:input", async (req, res, next) => {
 
     return res.json(autocomplete);
   });
+
 });
 
 module.exports = router;
