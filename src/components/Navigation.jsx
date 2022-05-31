@@ -4,7 +4,10 @@ import logoPalmhr from "./Navigation.module.scss";
 import NetworkStatusOnline  from "./NetworkStatusOnline";
 import NetworkStatusOffline from "./NetworkStatusOffline";
 
-const Navigation = ({ logout, online }) => {
+const Navigation = ({ 
+  // logout, 
+  online 
+}) => {
   return (
     <>
       <Navbar
@@ -31,13 +34,13 @@ const Navigation = ({ logout, online }) => {
                 <i className="fs-4 fa-brands fa-github"></i>
                 <span className="ms-3 d-sm-none"> Contribute</span>
               </Nav.Link>
-              <Nav.Link
+              {/* <Nav.Link
                 onClick={logout}
                 className="--ms-4 d-flex align-items-center"
               >
                 <i className="fs-4 fa-solid fa-arrow-right-from-bracket"></i>
                 <span className="ms-3 d-sm-none"> Logout</span>
-              </Nav.Link>
+              </Nav.Link> */}
             </Nav>
           </Navbar.Collapse>
         </Container>

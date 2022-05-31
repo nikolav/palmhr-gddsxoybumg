@@ -3,14 +3,14 @@ import React             from "react";
 import { Routes, Route } from "react-router-dom";
 
 import App   from "./App";
-import Login from "./components/Login";
+// import Login from "./components/Login";
 
-import useLocalStorage from "./hooks/use-local-storage";
+// import useLocalStorage from "./hooks/use-local-storage";
 
 
 const Root = () => {
 
-  const [authData, setAuthData] = useLocalStorage();
+  // const [authData, setAuthData] = useLocalStorage();
 
   return (
     <Routes>
@@ -18,15 +18,18 @@ const Root = () => {
         // intercept all routes
         path="*"
         element={
-          // watch `authData` for updates
-          //   render components accordingly
-          //   pass login/logout functoins to childreb
-          authData ? (
-            <App logout={() => setAuthData(() => "")} />
-          ) : (
-            <Login login={() => setAuthData(() => new Date().toISOString())} />
-          )
+          <App logout={() => null} />
         }
+        // element={
+        //   // watch `authData` for updates
+        //   //   render components accordingly
+        //   //   pass login/logout functoins to childreb
+        //   authData ? (
+        //     <App logout={() => setAuthData(() => "")} />
+        //   ) : (
+        //     <Login login={() => setAuthData(() => new Date().toISOString())} />
+        //   )
+        // }
       />
     </Routes>
   );

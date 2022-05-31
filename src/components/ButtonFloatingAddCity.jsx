@@ -59,6 +59,8 @@ const ButtonFloatingAddCity = ({ addPlace }) => {
     setSearchValue(input);
 
     // if (input) setAutocompleteUrl(target.value);
+    //
+    console.log(input);
     if (input) setAutocompleteUrlDebounced(target.value);
   };
 
